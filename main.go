@@ -1,14 +1,9 @@
 package main
 
-import()
+import "api-go/src/server"
 
+func main() {
+	srv := server.NewServer("localhost", "8080")
+	srv.Run()
 
-var (
-	HOST = "localhost"
-	PORT = "8080"
-)
-
-
-func main(){
-	
 }

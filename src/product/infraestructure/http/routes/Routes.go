@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Router(router *gin.RouterGroup) {
+func ProductRouter(router *gin.RouterGroup) {
 	middlewareAuth := middlewares.JWTAuthMiddleware()
 	createController := http.SetUpCreateController()
 	getByIdController := http.SetUpGetIDController()
