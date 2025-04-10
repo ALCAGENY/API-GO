@@ -4,6 +4,7 @@ import (
 	"api-go/src/database"
 	"api-go/src/user/domain/entities"
 	"database/sql"
+	"fmt"
 )
 
 type UserReposirtoyMysql struct {
@@ -31,7 +32,7 @@ func (r *UserReposirtoyMysql) Create(user entities.User) (entities.User, error) 
 
 	defer stmt.Close()
 
-	result, err := r.DB.Exec(query, user.Email, user.Name, user.Password)
+	result, err := r.DB.Exec(query, user.Name, user.Email, user.Password)
 	if err != nil {
 		return entities.User{}, err
 	}
@@ -118,6 +119,8 @@ func (r *UserReposirtoyMysql) GetByEmail(email string) (entities.User, error){
 	var user entities.User
 
 	err = row.Scan(&user.ID, &user.Name, &user.Email, &user.Password)
+
+	fmt.Println(user)
 
 	if err == sql.ErrNoRows{
 		return entities.User{}, err
